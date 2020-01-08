@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: helloapi_dev
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: helloapi
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: helloapi
+          image: adamcao/helloapiapp:tagVersion
+          ports:
+            - containerPort: 5001
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: helloapi_dev
+spec:
+  selector:
+    app: helloapi_svc
+  # type:  LoadBalancer | ClusterIP | NodePort
+  type: NodePort
+  ports:
+    - name: hello-api-port
+      port: 5001
+      targetPort: 5001
