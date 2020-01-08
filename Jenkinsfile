@@ -13,10 +13,12 @@ pipeline{
         }
         stage("DockerHub Push"){
             steps{
-                withCredentials([string(credentialsId:'docker-hub',variable:'dockerHunPwd')]){
-                    sh "docker login -u adamcao -p ${dockerHunPwd}"
-                    sh "docker push adamcao/helloapiapp:${DOCKER_TAG}"
-                }
+                // withCredentials([string(credentialsId:'docker-hub',variable:'dockerHunPwd')]){
+                //     sh "docker login -u adamcao -p ${dockerHunPwd}"
+                //     sh "docker push adamcao/helloapiapp:${DOCKER_TAG}"
+                // }
+                sh "docker push adamcao/helloapiapp:${DOCKER_TAG}"
+
             }
         }
         stage(Deploy to k8s){
