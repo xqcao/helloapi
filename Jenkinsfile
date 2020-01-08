@@ -7,7 +7,7 @@ pipeline{
         stage("Build DOcker Image"){
             steps{
                 echo "========executing A build image========"
-                sh "docker build -t adamcao/helloapiapp:${DOCKER_TAG}"
+                sh "docker build -t adamcao/helloapiapp:${DOCKER_TAG} ."
             }
             
         }
