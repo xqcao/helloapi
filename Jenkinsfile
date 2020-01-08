@@ -6,23 +6,20 @@ pipeline{
     stages{
         stage("Build DOcker Image"){
             steps{
-                echo "========executing A========"
+                echo "========executing A build image========"
                 sh "docker build -t adamcao/helloapiapp:${DOCKER_TAG}"
             }
             
         }
         stage("DockerHub Push"){
             steps{
-                // withCredentials([string(credentialsId:'docker-hub',variable:'dockerHunPwd')]){
-                //     sh "docker login -u adamcao -p ${dockerHunPwd}"
-                //     sh "docker push adamcao/helloapiapp:${DOCKER_TAG}"
-                // }
+                echo "====++++docker push++++===="
                 sh "docker push adamcao/helloapiapp:${DOCKER_TAG}"
-
             }
         }
         stage("Deploy to k8s"){
-            stages{
+            steps{
+                echo "====++++k8s deploy++++===="
                 sh "chmod +x changeTag.sh"
                 sh "./changeTag.sh ${DOCKER_TAG}"
                 script{
