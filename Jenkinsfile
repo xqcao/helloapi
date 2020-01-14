@@ -14,7 +14,7 @@ pipeline{
         stage("DockerHub Push"){
             steps{
                 echo "====++++docker push++++===="
-                sh "docker push adamcao/helloapiapp:${DOCKER_TAG}"
+                sh "sudo docker push adamcao/helloapiapp:${DOCKER_TAG}"
             }
         }
         stage("Deploy to k8s"){
