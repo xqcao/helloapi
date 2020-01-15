@@ -4,20 +4,20 @@ pipeline{
         DOCKER_TAG = getDockerTagForVersion()
     }
     stages{
-        stage("Build DOcker Image"){
+        stage("Build Docker Image 001"){
             steps{
                 echo "========executing A build image========"
                 sh "docker build . -t adamcao/helloapiapp:${DOCKER_TAG}"
             }
             
         }
-        stage("DockerHub Push"){
+        stage("DockerHub Push 002"){
             steps{
                 echo "====++++docker push++++===="
                 sh "docker push adamcao/helloapiapp:${DOCKER_TAG}"
             }
         }
-        stage("Deploy to k8s"){
+        stage("Deploy to k8s 003"){
             steps{
                 echo "====++++k8s deploy++++===="
                 sh "chmod +x changeTag.sh"
