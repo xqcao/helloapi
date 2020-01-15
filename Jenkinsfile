@@ -7,14 +7,14 @@ pipeline{
         stage("Build DOcker Image"){
             steps{
                 echo "========executing A build image========"
-                sh "sudo docker build . -t adamcao/helloapiapp:${DOCKER_TAG}"
+                sh "docker build . -t adamcao/helloapiapp:${DOCKER_TAG}"
             }
             
         }
         stage("DockerHub Push"){
             steps{
                 echo "====++++docker push++++===="
-                sh "sudo docker push adamcao/helloapiapp:${DOCKER_TAG}"
+                sh "docker push adamcao/helloapiapp:${DOCKER_TAG}"
             }
         }
         stage("Deploy to k8s"){
