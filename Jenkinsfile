@@ -13,7 +13,7 @@ pipeline{
         }
         stage("DockerHub Push 002"){
             steps{
-                echo "====++++docker push++++===="
+                echo "====++++docker push again++++===="
                 sh "docker push adamcao/helloapiapp:${DOCKER_TAG}"
             }
         }
