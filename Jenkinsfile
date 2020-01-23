@@ -22,6 +22,7 @@ pipeline{
                 echo "====++++k8s deploy++++===="
                 sh "chmod +x changeTag.sh"
                 sh "./changeTag.sh ${DOCKER_TAG}"
+                sh "cat my_deployment.yml"
                 script{
                     try{
                         sh "kubectl apply -f ."
