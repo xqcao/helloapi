@@ -17,9 +17,19 @@ pipeline{
                 sh "docker push adamcao/helloapiapp:${DOCKER_TAG}"
             }
         }
+        stage("install kubectl and get pods"){
+            steps{
+                sh "curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+                sh "chmod +x ./kubectl"
+                sh "mv ./kubectl /usr/local/bin/kubectl"
+                echo "kubectl version"
+                sh "kubectl get pods"
+            }
+        }
         stage("Deploy to k8s 003"){
             steps{
-                echo "====++++k8s deploy++++===="
+                echo "==== ++++ k8s deploy++++===="
+                sh "cat mydev.yml"
                 sh "chmod +x changeTag.sh"
                 sh "./changeTag.sh ${DOCKER_TAG}"
                 sh "cat my_deployment.yml"
