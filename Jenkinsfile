@@ -23,7 +23,7 @@ pipeline{
                 // sh "chmod +x ./kubectl"
                 // sh "mv ./kubectl /usr/local/bin/kubectl"
                 echo "kubectl version"
-                sh "kubectl get pods"
+                // sh "kubectl get pods"
             }
         }
         stage("Deploy to k8s 003"){
