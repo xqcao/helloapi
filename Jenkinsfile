@@ -19,9 +19,9 @@ pipeline{
         }
         stage("install kubectl and get pods"){
             steps{
-                sh "curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.11.5/bin/darwin/amd64/kubectl"
-                sh "chmod +x ./kubectl"
-                sh "mv ./kubectl /usr/local/bin/kubectl"
+                // sh "curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.11.5/bin/darwin/amd64/kubectl"
+                // sh "chmod +x ./kubectl"
+                // sh "mv ./kubectl /usr/local/bin/kubectl"
                 echo "kubectl version"
                 sh "kubectl get pods"
             }
