@@ -1,3 +1,4 @@
+currentBuild.displayName="hello_api_job #"+currentBuild.number
 pipeline{
     agent any
     environment{
