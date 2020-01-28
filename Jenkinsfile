@@ -8,7 +8,10 @@ pipeline{
         stage("Build Docker Image 001"){
             steps{
                 echo "========executing A build image========"
-                sh "docker login -u adamcao -p ${dockerHub}"
+                withCredentials([string(credentialsId: 'dockerHub', variable: 'dockerHub')]) {
+                    sh "docker login -u adamcao -p ${dockerHub}"
+                }
+                
                 sh "docker build . -t adamcao/helloapiapp:${DOCKER_TAG}"
             }
             
