@@ -39,9 +39,9 @@ pipeline{
                 sh "cat my_deployment.yml"
                 script{
                     try{
-                        sh "kubectl apply -f ."
+                        sh "kubectl apply -f my_deployment.yml"
                     }catch(error){
-                        sh "kubectl create -f ."
+                        sh "kubectl create -f my_deployment.yml"
                     }
                 }
             }
