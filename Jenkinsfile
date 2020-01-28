@@ -8,20 +8,17 @@ pipeline{
         stage("Build Docker Image 001"){
             steps{
                 echo "========executing A build image========"
-                withCredentials([string(credentialsId: 'dockerHub', variable: 'dockerHubPwd')]) {
-                    sh "docker login -u adamcao -p ${dockerHubPwd}"
-                    sh "docker build . -t adamcao/helloapiapp:${DOCKER_TAG}"
-                }
-                
-                
-                
+                sh "docker build . -t adamcao/helloapiapp:${DOCKER_TAG}"
             }
             
         }
         stage("DockerHub Push 002"){
             steps{
                 echo "====++++docker push again++++===="
-                sh "docker push adamcao/helloapiapp:${DOCKER_TAG}"
+                withCredentials([string(credentialsId: 'dockerHub', variable: 'dockerHubPwd')]) {
+                    sh "docker login -u adamcao -p ${dockerHubPwd}"
+                    sh "docker push adamcao/helloapiapp:${DOCKER_TAG}"
+                }
             }
         }
         stage("install kubectl and get pods"){
