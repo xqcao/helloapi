@@ -9,7 +9,7 @@ pipeline{
             steps{
                 echo "========executing A build image========"
                 withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerHubPwd')]) {
-                    sh "docker login -u adamcao -p ${dockerHubPwd}"
+                    sh "docker login -u adamcao --password-stdin ${dockerHubPwd}"
                     sh "docker build . -t adamcao/helloapiapp:${DOCKER_TAG}"
                 }
                 // sh "docker build . -t adamcao/helloapiapp:${DOCKER_TAG}"
